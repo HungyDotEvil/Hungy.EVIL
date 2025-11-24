@@ -77,13 +77,17 @@
       padding-left: 20px;
     }
   </style>
-</head>
-<body>
-	
-	<h2><a href="Information/Archive/images">Images.pdf</a></h2>
-	<h2><a href="Information/Archive/videos">videos.pdf</a></h2>
-	<h2><a href="Information/Archive/sounds">sounds.pdf</a></h2>
-	
-</body>
+<header>
+  <h1>Archive</h1>
+</header>
+<section>
+  <h2><a href="Information/Archive/images.html">Images.html</a></h2>
+  <h2><a href="Information/Archive/videos.html">Videos.html</a></h2>
+  <h2><a href="Information/Archive/sounds.html">Sounds.html</a></h2>
+</section>
+<footer>
+  &copy; 2025 Hungy
+</footer>
+
 
 </html>
