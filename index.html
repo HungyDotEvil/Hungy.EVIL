@@ -1,104 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hungy.EVIL</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hungy</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #2b1055, #1b1f3b, #0f3460);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --accent: #ff7ac6;
+      --accent-soft: #6dd6ff;
+      --text-main: #f2f2f2;
+      --text-muted: #c7c7d1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #000;
-      color: #00ff00;
-      font-family: "Courier New", Courier, monospace;
       margin: 0;
-      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
     }
 
     header {
-      background: #000;
       text-align: center;
-      padding: 30px;
-      border-bottom: 2px solid #00ff00;
+      padding: 80px 20px 40px;
     }
 
-    h1 {
-      font-size: 2.5em;
-      text-transform: uppercase;
+    header h1 {
+      font-size: 3rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
     }
 
-    h1::after {
-      content: "█";
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
     }
 
     nav {
-      text-align: center;
-      background: #111;
-      padding: 15px;
-      border-bottom: 2px solid #00ff00;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 60px;
     }
 
     nav a {
-      color: #00ff00;
-      margin: 0 20px;
+      color: var(--text-muted);
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
+      font-weight: 400;
+      transition: color 0.2s ease;
     }
 
     nav a:hover {
-      color: #0f0;
-      text-shadow: 0 0 10px #00ff00;
+      color: var(--accent);
     }
 
-    section {
-      padding: 20px;
-      max-width: 800px;
+    main {
+      max-width: 900px;
       margin: auto;
+      padding: 0 20px 120px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--accent-soft);
+    }
+
+    .card p {
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .links {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .links a {
+      color: var(--text-main);
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .links a:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
     }
 
     footer {
-      text-align: center;
-      background: #111;
-      color: #00ff00;
-      padding: 15px;
-      border-top: 2px solid #00ff00;
       position: fixed;
       bottom: 0;
       width: 100%;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
     }
 
-    ul {
-      list-style-type: ">> ";
-      padding-left: 20px;
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Hungy.EVIL</h1>
-    <p>Villainous webpage</p>
+    <h1>Hungy</h1>
+    <p>Not an artist, just someone who likes to paint</p>
   </header>
 
-  <section>
-    <h1>Mission_Details.zip</h1>
-    <p>
-      ███[REDACTED]███
-    </p>
-    <h2><a href="/Hungy.EVIL/information/archive/socials.html">Known_Pseudonyms.txt</a></h2>
-    <h2><a href="information/archive/archive.html">Archive.txt</a></h2>
-  </section>
+  <nav>
+    <a href="#">Home</a>
+    <a href="information/archive/socials.html">Socials</a>
+    <a href="information/archive/archive.html">Archive</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        This website serves as a portfolio to my works and maybe more.
+      </p>
+
+      <div class="links">
+        <a href="information/archive/socials.html">Socials</a>
+        <a href="information/archive/archive.html">Archive</a>
+      </div>
+    </div>
+  </main>
 
   <footer>
-    <h2>Confidants.txt</h2>
-    <p>Email <a href="mailto:poetictyranthungy@gmail.com">here...</a></p>
-    <p>&copy; 2025 Hungy</p>
-    <p>work in progress...</p>
+    <p>
+      Contact: <a href="mailto:poetictyranthungy@gmail.com">poetictyranthungy@gmail.com</a>
+    </p>
+    <p>© 2025 Hungy · Work in progress</p>
   </footer>
 
 </body>
