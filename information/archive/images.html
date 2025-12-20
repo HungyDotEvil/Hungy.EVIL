@@ -1,83 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Archive - Images</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image Archive</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #2b1055, #1b1f3b, #0f3460);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --accent: #ff7ac6;
+      --accent-soft: #6dd6ff;
+      --text-main: #f2f2f2;
+      --text-muted: #c7c7d1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #000; /* Black background */
-      color: #00ff00;        /* Neon green text */
-      font-family: "Courier New", Courier, monospace;
       margin: 0;
-      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
     }
 
     header {
-      background: #000;
       text-align: center;
-      padding: 30px;
-      border-bottom: 2px solid #00ff00;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      text-transform: uppercase;
-    }
-
-    h1::after {
-      content: "█";
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+      padding: 70px 20px 30px;
     }
 
     nav {
-      text-align: center;
-      background: #111;
-      padding: 15px;
-      border-bottom: 2px solid #00ff00;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 50px;
     }
 
     nav a {
-      color: #00ff00;
-      margin: 0 20px;
+      color: var(--text-muted);
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
     }
 
     nav a:hover {
-      color: #0f0;
-      text-shadow: 0 0 10px #00ff00;
+      color: var(--accent);
     }
 
-    section {
-      padding: 20px;
-      max-width: 800px;
+    main {
+      max-width: 1200px;
       margin: auto;
+      padding: 0 20px 120px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 35px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: rgba(255, 255, 255, 0.06);
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 999;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+      animation: zoomIn 0.25s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     footer {
-      text-align: center;
-      background: #111;
-      color: #00ff00;
-      padding: 15px;
-      border-top: 2px solid #00ff00;
       position: fixed;
       bottom: 0;
       width: 100%;
-    }
-
-    ul {
-      list-style-type: ">> ";
-      padding-left: 20px;
+      text-align: center;
+      padding: 18px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
     }
   </style>
-  <body>
-<p>under construction</p>
+</head>
+<body>
+
+  <header>
+    <h1>Image Archive</h1>
+    <p>Collected visuals and stored media</p>
+  </header>
+
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a href="socials.html">Socials</a>
+    <a href="archive.html">Archive</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <div class="gallery">
+
+        <div class="gallery-item">
+          <img src="pics/image1.jpg" alt="Image 1">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image2.jpg" alt="Image 2">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image3.jpg" alt="Image 3">
+        </div>
+		
+		 <div class="gallery-item">
+          <img src="pics/image4.jpg" alt="Image 4">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image5.jpg" alt="Image 5">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image6.jpg" alt="Image 6">
+        </div>
+		
+		 <div class="gallery-item">
+          <img src="pics/image7.jpg" alt="Image 7">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image8.jpg" alt="Image 8">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image9.jpg" alt="Image 9">
+        </div>
+		
+		 <div class="gallery-item">
+          <img src="pics/image10.jpg" alt="Image 10">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image11.jpg" alt="Image 11">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image12.jpg" alt="Image 12">
+        </div>
+		
+		        <div class="gallery-item">
+          <img src="pics/image13.jpg" alt="Image 13">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image14.jpg" alt="Image 14">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image15.jpg" alt="Image 15">
+        </div>
+		
+		 <div class="gallery-item">
+          <img src="pics/image16.jpg" alt="Image 16">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image17.jpg" alt="Image 17">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image18.jpg" alt="Image 18">
+        </div>
+		
+		 <div class="gallery-item">
+          <img src="pics/image19.jpg" alt="Image 19">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image20.jpg" alt="Image 20">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image21.jpg" alt="Image 21">
+        </div>
+		
+		 <div class="gallery-item">
+          <img src="pics/image22.jpg" alt="Image 22">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image23.jpg" alt="Image 23">
+        </div>
+
+        <div class="gallery-item">
+          <img src="pics/image24.jpg" alt="Image 24">
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Hungy · Image Archive
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Expanded view">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+      });
+    });
+
+    lightbox.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+      lightboxImg.src = "";
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        lightbox.classList.remove("active");
+        lightboxImg.src = "";
+      }
+    });
+  </script>
+ <footer>
+    <p>
+      Contact: <a href="mailto:poetictyranthungy@gmail.com">poetictyranthungy@gmail.com</a>
+    </p>
+    <p>© 2025 Hungy · Work in progress</p>
+  </footer>
 </body>
 </html>

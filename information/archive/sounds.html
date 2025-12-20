@@ -1,83 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Archive - Sounds</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound Archive</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #2b1055, #1b1f3b, #0f3460);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --accent: #ff7ac6;
+      --accent-soft: #6dd6ff;
+      --text-main: #f2f2f2;
+      --text-muted: #c7c7d1;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
-      background-color: #000; /* Black background */
-      color: #00ff00;        /* Neon green text */
-      font-family: "Courier New", Courier, monospace;
       margin: 0;
-      padding: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
     }
 
     header {
-      background: #000;
       text-align: center;
-      padding: 30px;
-      border-bottom: 2px solid #00ff00;
+      padding: 70px 20px 30px;
     }
 
-    h1 {
-      font-size: 2.5em;
-      text-transform: uppercase;
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
-    h1::after {
-      content: "█";
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+    header p {
+      color: var(--text-muted);
     }
 
     nav {
-      text-align: center;
-      background: #111;
-      padding: 15px;
-      border-bottom: 2px solid #00ff00;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 50px;
     }
 
     nav a {
-      color: #00ff00;
-      margin: 0 20px;
+      color: var(--text-muted);
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.2s;
     }
 
     nav a:hover {
-      color: #0f0;
-      text-shadow: 0 0 10px #00ff00;
+      color: var(--accent);
     }
 
-    section {
-      padding: 20px;
-      max-width: 800px;
+    main {
+      max-width: 1000px;
       margin: auto;
+      padding: 0 20px 120px;
     }
 
-    footer {
-      text-align: center;
-      background: #111;
-      color: #00ff00;
-      padding: 15px;
-      border-top: 2px solid #00ff00;
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 35px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    /* Audio grid */
+    .audio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .track {
+      background: rgba(255,255,255,0.06);
+      padding: 20px;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .track:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-3px);
+    }
+
+    .track h3 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+      color: var(--accent-soft);
+    }
+
+    .track p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Audio lightbox */
+    .audio-lightbox {
       position: fixed;
-      bottom: 0;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 999;
+    }
+
+    .audio-lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .player {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      padding: 30px;
+      border-radius: 18px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      animation: fadeUp 0.25s ease;
+    }
+
+    .player h2 {
+      margin: 0 0 20px;
+      font-size: 1.3rem;
+      color: var(--accent-soft);
+    }
+
+    audio {
       width: 100%;
     }
 
-    ul {
-      list-style-type: ">> ";
-      padding-left: 20px;
+    @keyframes fadeUp {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 18px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
     }
   </style>
+</head>
 <body>
-<p>under construction</p>
+
+  <header>
+    <h1>Sound Archive</h1>
+    <p>Recorded audio, experiments, and fragments</p>
+  </header>
+
+   <nav>
+    <a href="../../index.html">Home</a>
+    <a href="archive.html">Archive</a>
+	<a href="socials.html">Socials</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <div class="audio-grid">
+
+        <div class="track" data-src="../audio/track1.mp3" data-title="Front salad, Back salad, Front blunt">
+          <h3>Bamboo Juu-Kyu</h3>
+          <p>First original song</p>
+        </div>
+
+        <div class="track" data-src="../audio/track2.mp3" data-title="Poppin wheelies on my bicycle">
+          <h3>ChaosKid</h3>
+          <p>Deltarune theme cover</p>
+        </div>
+
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Hungy · Sound Archive
+  </footer>
+
+  <!-- Audio Lightbox -->
+  <div class="audio-lightbox" id="audioLightbox">
+    <div class="player">
+      <h2 id="trackTitle">Now Playing</h2>
+      <audio id="audioPlayer" controls></audio>
+    </div>
+  </div>
+
+  <script>
+    const lightbox = document.getElementById("audioLightbox");
+    const player = document.getElementById("audioPlayer");
+    const title = document.getElementById("trackTitle");
+
+    document.querySelectorAll(".track").forEach(track => {
+      track.addEventListener("click", () => {
+        player.src = track.dataset.src;
+        title.textContent = track.dataset.title;
+        lightbox.classList.add("active");
+        player.play();
+      });
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        player.pause();
+        player.src = "";
+        lightbox.classList.remove("active");
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        player.pause();
+        player.src = "";
+        lightbox.classList.remove("active");
+      }
+    });
+  </script>
+ <footer>
+    <p>
+      Contact: <a href="mailto:poetictyranthungy@gmail.com">poetictyranthungy@gmail.com</a>
+    </p>
+    <p>© 2025 Hungy · Work in progress</p>
+  </footer>
 </body>
 </html>
